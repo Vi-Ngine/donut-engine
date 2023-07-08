@@ -6,29 +6,20 @@ import com.badlogic.ashley.utils.ImmutableArray;
 
 import donut.core.api.system.EntitySystemWrapable;
 import donut.core.api.system.EntitySystemWrapper;
+import donut.core.wrapper.ECSystem.EntitiesContainer;
+import donut.core.wrapper.ECSystem.EntitySystem;
 
-public class EntityEventSystem extends EntitySystemWrapper<EntityEventSystem>
+public class EntityEventSystem extends EntitySystem
 {
-    public static class Wrapable extends EntitySystemWrapable<EntityEventSystem>
-    {
-        @Override
-        public void update(float deltaTime) {
-            ImmutableArray<Entity> entites =
-                    getEngine().getEntitiesFor(Family.all(EntityCallbackReceiver.Wrapable.class).get());
-
-            for(Entity entity : entites)
-            {
-                EntityCallbackReceiver eventComp = EntityCallbackReceiver.mapper.get(entity).getWrapper();
-                eventComp.onUpdate(deltaTime);
-            }
-        }
-    }
-
-
-
     @Override
-    protected EntitySystemWrapable<EntityEventSystem> getWrappable()
-    {
-        return new Wrapable();
+    public void onUpdate(EntitiesContainer entitiesContainer) {
+        ImmutableArray<Entity> entites =
+                getEngine().getEntitiesFor(Family.all(EntityCallbackReceiver.Wrapable.class).get());
+
+        for(Entity entity : entites)
+        {
+            EntityCallbackReceiver eventComp = EntityCallbackReceiver.mapper.get(entity).getWrapper();
+            eventComp.onUpdate(deltaTime);
+        }
     }
 }

@@ -14,19 +14,13 @@
         <dependencies>
             <dependency>
                 <groupId>com.vingine</groupId>
-                <artifactId>ashley</artifactId>
+                <artifactId>ECSystem</artifactId>
                 <version>1.0-SNAPSHOT</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.badlogicgames.ashley</groupId>
-                        <artifactId>ashley</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>ashley</module>
+        <module>ECSystem</module>
     </modules>
 </project>

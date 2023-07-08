@@ -4,29 +4,22 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import donut.core.api.system.EntitySystemWrapable;
 import donut.core.api.system.EntitySystemWrapper;
+import donut.core.wrapper.ECSystem.EntitiesContainer;
+import donut.core.wrapper.ECSystem.EntitySystem;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class PhysicSystem extends EntitySystemWrapper<PhysicSystem>
+public class PhysicSystem extends EntitySystem
 {
     private Set<ContactListener> contactListeners = new HashSet<>();
 
-    public static class Wrapable extends EntitySystemWrapable<PhysicSystem>
-    {
-        @Override
-        public void update(float deltaTime)
-        {
-            getWrapper().getWorld().step(deltaTime, 3, 3);
-        }
-    }
+    final World world;
 
     @Override
-    protected EntitySystemWrapable<PhysicSystem> getWrappable() {
-        return new Wrapable();
+    public void onUpdate(EntitiesContainer entitiesContainer) {
+        getWrapper().getWorld().step(deltaTime, 3, 3);
     }
-
-    final World world;
 
     public PhysicSystem()
     {

@@ -1,20 +1,7 @@
 package donut.core.api.system.event;
+import donut.core.wrapper.ECSystem.Component;
 
-import com.badlogic.ashley.core.ComponentMapper;
-
-import donut.core.api.component.ComponentWrapable;
-import donut.core.api.component.ComponentWrapper;
-
-public class EntityCallbackReceiver extends ComponentWrapper<EntityCallbackReceiver> {
-    public static ComponentMapper<EntityCallbackReceiver.Wrapable> mapper =
-            ComponentMapper.getFor(EntityCallbackReceiver.Wrapable.class);
-
-    public static class Wrapable extends ComponentWrapable<EntityCallbackReceiver> {}
-    @Override
-    protected ComponentWrapable<EntityCallbackReceiver> getWrappable() {
-        return new Wrapable();
-    }
-
+public class EntityCallbackReceiver extends Component {
     private IUpdateCallback update;
     private ICreateCallback create;
 

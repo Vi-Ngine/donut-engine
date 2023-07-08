@@ -9,8 +9,9 @@ import donut.core.api.GameEntity;
 import donut.core.api.component.ComponentWrapable;
 import donut.core.api.component.ComponentWrapper;
 import donut.core.api.system.render.IRenderCallback;
+import donut.core.wrapper.ECSystem.Component;
 
-public class Debugger extends ComponentWrapper<Debugger> implements IRenderCallback {
+public class Debugger extends Component implements IRenderCallback {
     public static ComponentMapper<Debugger.Wrapable> mapper = ComponentMapper.getFor(Debugger.Wrapable.class);
 
     private boolean hasRenderer = false;
@@ -21,7 +22,7 @@ public class Debugger extends ComponentWrapper<Debugger> implements IRenderCallb
         this.gameEntity = gameEntity;
     }
 
-    public boolean isHasRenderer()
+    public boolean hasRenderer()
     {
         return hasRenderer;
     }

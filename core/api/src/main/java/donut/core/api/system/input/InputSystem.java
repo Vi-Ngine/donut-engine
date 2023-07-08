@@ -9,14 +9,12 @@ import java.util.Set;
 
 import donut.core.api.system.EntitySystemWrapable;
 import donut.core.api.system.EntitySystemWrapper;
+import donut.core.wrapper.ECSystem.EntitiesContainer;
+import donut.core.wrapper.ECSystem.EntitySystem;
 
-public class InputSystem extends EntitySystemWrapper<InputSystem> {
+public class InputSystem extends EntitySystem {
 
     Set<InputProcessor> inputProcessors = new HashSet<>();
-
-    protected static class Wrapable extends EntitySystemWrapable<InputSystem>
-    {
-    }
 
     public InputSystem()
     {
@@ -41,11 +39,6 @@ public class InputSystem extends EntitySystemWrapper<InputSystem> {
                 return false;
             }
         });
-    }
-    @Override
-    protected EntitySystemWrapable<InputSystem> getWrappable()
-    {
-        return new Wrapable();
     }
 
     public void addInputProcessor(InputProcessor inputProcessor)

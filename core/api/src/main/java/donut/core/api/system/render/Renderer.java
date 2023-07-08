@@ -4,21 +4,12 @@ import donut.core.api.component.ComponentWrapable;
 import donut.core.api.component.ComponentWrapper;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import donut.core.wrapper.ECSystem.Component;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Renderer extends ComponentWrapper<Renderer> {
-    public static ComponentMapper<Renderer.Wrapable> mapper = ComponentMapper.getFor(Renderer.Wrapable.class);
-
-    public static class Wrapable extends ComponentWrapable<Renderer>
-    {}
-
-    @Override
-    protected ComponentWrapable<Renderer> getWrappable() {
-        return new Wrapable();
-    }
-
+public class Renderer extends Component {
     private final Set<IRenderCallback> renderLiseners = new HashSet<>();
 
     public void addRenderCallback(IRenderCallback renderCallback)
