@@ -11,58 +11,35 @@ public class RESquestTest
     @Test
     public void test1()
     {
-        ResourceProvider provider = new ResourceProvider();
+        TextProvider provider = new TextProvider();
         provider.addResource("hellobitch");
 
-        int[] cnt = {0};
-
-        IResourceConsumer consumer = new IResourceConsumer() {
-            @Override
-            public ResourceRequest[] getRequests() {
-                return new ResourceRequest[]{new ResourceRequest(String.class,
-                        new IConsumeCallback<String>() {
-                            @Override
-                            public boolean consume(String resource) {
-                                cnt[0]++;
-                                return true;
-                            }
-                        }
-                )};
-            }
-        };
-
-
+        TextConsumer consumer = new TextConsumer();
         provider.addConsumer(consumer);
+
+        Assertions.assertTrue(consumer.consumeString.isEmpty());
+
+        provider.processRequests();
         provider.processRequests();
 
-        Assertions.assertEquals(1, cnt[0]);
+        Assertions.assertEquals(0, consumer.getConsumer().getUnresolvedRequests().length);
+        Assertions.assertEquals("hellobitch", consumer.consumeString);
     }
 
     public void test2()
     {
-        ResourceProvider provider = new ResourceProvider();
+        TextProvider provider = new TextProvider();
         provider.addResource("hellobitch");
 
-        int[] cnt = {0};
-
-        IResourceConsumer consumer = new IResourceConsumer() {
-            @Override
-            public ResourceRequest[] getRequests() {
-                return new ResourceRequest[]{new ResourceRequest(String.class,
-                        new IConsumeCallback<String>() {
-                            @Override
-                            public boolean consume(String resource) {
-                                cnt[0]++;
-                                return false;
-                            }
-                        }
-                )};
-            }
-        };
-
+        TextConsumer2 consumer = new TextConsumer2();
         provider.addConsumer(consumer);
+
+        Assertions.assertTrue(consumer.consumeString.isEmpty());
+
+        provider.processRequests();
         provider.processRequests();
 
-        Assertions.assertTrue(cnt[0] > 1);
+        Assertions.assertTrue(consumer.getConsumer().getUnresolvedRequests().length > 0);
+        Assertions.assertEquals("hellobitch", consumer.consumeString);
     }
 }

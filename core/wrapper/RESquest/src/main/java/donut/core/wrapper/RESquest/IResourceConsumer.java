@@ -1,6 +1,8 @@
 package donut.core.wrapper.RESquest;
 
+import java.util.List;
+
 public interface IResourceConsumer
 {
-    ResourceRequest[] getRequests();
+    ResourceConsumer getConsumer();
 }

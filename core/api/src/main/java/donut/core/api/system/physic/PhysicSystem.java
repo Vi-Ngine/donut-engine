@@ -2,9 +2,12 @@ package donut.core.api.system.physic;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import donut.core.wrapper.ECSystem.Component;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
+import donut.core.wrapper.ECSystem.Entity;
 import donut.core.wrapper.ECSystem.EntitySystem;
-import org.springframework.context.annotation.Bean;
+import donut.core.wrapper.
+import donut.core.wrapper.RESquest.ResourceProvider;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +15,7 @@ import java.util.Set;
 public class PhysicSystem extends EntitySystem
 {
     private Set<ContactListener> contactListeners = new HashSet<>();
+    private ResourceProvider resourceProvider = new ResourceProvider();
 
     final World world;
 
@@ -51,21 +55,22 @@ public class PhysicSystem extends EntitySystem
                 }
             }
         });
-    }
 
-    public World getWorld()
-    {
-        return world;
+        resourceProvider.addResource(world);
     }
 
     @Override
-    public void onUpdate(EntitiesContainer entitiesContainer, float deltaTime) {
-        world.step(deltaTime, 3, 3);
-    }
-
-    public PhysicBody getPhysicBody(BodyDef def)
+    public void onUpdate(EntitiesContainer entitiesContainer, Object deltaTime)
     {
-        return new PhysicBody(world, def);
+        for(Entity entity : entitiesContainer.getEntitiesFor(PhysicBody.class))
+        {
+            PhysicBody physicBody = entity.getComponent(PhysicBody.class);
+
+            if(resourceProvider.con)
+            resourceProvider.addConsumer(physicBody);
+        }
+
+        world.step((float)deltaTime, 3, 3);
     }
 
     public final ContactListener[] getContactListeners()

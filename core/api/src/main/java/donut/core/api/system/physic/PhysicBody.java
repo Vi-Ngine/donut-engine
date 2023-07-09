@@ -3,28 +3,35 @@ package donut.core.api.system.physic;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-
-import donut.core.api.component.ComponentWrapable;
-import donut.core.api.component.ComponentWrapper;
 import donut.core.wrapper.ECSystem.Component;
+import donut.core.wrapper.RESquest.IConsumeCallback;
+import donut.core.wrapper.RESquest.IResourceConsumer;
+import donut.core.wrapper.RESquest.ResourceRequest;
 
-public class PhysicBody extends Component
+public class PhysicBody extends Component implements IResourceConsumer
 {
+    private World world;
+    private BodyDef bodyDef;
+    private Body body;
+
     @Override
-    protected ComponentWrapable<PhysicBody> getWrappable() {
-        return new Wrapable();
+    public ResourceRequest[] getRequests()
+    {
+        return new ResourceRequest[]
+                {
+                    new ResourceRequest(World.class, new IConsumeCallback<World>() {
+                        @Override
+                        public boolean consume(World world) {
+                            PhysicBody.this.world = world;
+                            PhysicBody.this.body = world.createBody(bodyDef);
+                            return true;
+                        }
+                    })
+                };
     }
 
-    public static class Wrapable extends ComponentWrapable<PhysicBody>
+    PhysicBody(BodyDef bodyDef)
     {
-
-    }
-
-    public final World world;
-    public final Body body;
-    protected PhysicBody(World world, BodyDef def)
-    {
-        this.world = world;
-        this.body = world.createBody(def);
+        this.bodyDef = bodyDef;
     }
 }

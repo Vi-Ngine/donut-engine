@@ -4,31 +4,33 @@ import java.util.*;
 
 public class ResourceProvider {
     Map<String, Object> resources = new HashMap<>();
-    Set<ResourceRequest> pendingRequests = new HashSet<>();
+    Set<ResourceConsumer> consumers = new HashSet<>();
     public void addResource(Object resource)
     {
         resources.put(resource.getClass().toString(), resource);
-        processRequests();
+    }
+
+    public <T> T getResource(Class<T> resourceClass)
+    {
+        return (T)resources.get(resourceClass.toString());
     }
 
     public void addConsumer(IResourceConsumer consumer)
     {
-        pendingRequests.addAll(Arrays.asList(consumer.getRequests()));
-        processRequests();
+        consumers.add(consumer.getConsumer());
     }
 
     public void processRequests()
     {
-        List<ResourceRequest> processedRequest = new ArrayList<>();
-        for(ResourceRequest request : pendingRequests)
+        for(ResourceConsumer consumer : consumers)
         {
-            Object requestResource = resources.get(request.resourceClass.toString());
-            if(request.consumeCallback.consume(requestResource))
+            for(ResourceRequest request : consumer.getUnresolvedRequests())
             {
-                processedRequest.add(request);
+                if(request.consume(getResource(request.resourceClass)))
+                {
+                    request.setState(ResourceRequest.RequestState.RESOLVED);
+                }
             }
         }
-
-        pendingRequests.removeAll(processedRequest);
     }
 }
