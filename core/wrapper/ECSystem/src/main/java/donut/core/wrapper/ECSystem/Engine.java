@@ -28,11 +28,11 @@ public class Engine {
         return (T)systems.get(systemClass.toString());
     }
 
-    public void update(float delta)
+    public void update(Object userData)
     {
         for(EntitySystem system : systems.values())
         {
-            system.onUpdate(entities);
+            system.onUpdate(entities, userData);
         }
     }
 }

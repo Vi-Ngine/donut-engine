@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class PrintTextSystem extends EntitySystem {
     @Override
-    public void onUpdate(EntitiesContainer entitiesContainer) {
+    public void onUpdate(EntitiesContainer entitiesContainer, Object userdata) {
         for(Entity entity : entitiesContainer.getEntitiesFor(TextComp.class))
         {
             TextComp text =  entity.getComponent(TextComp.class);

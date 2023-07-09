@@ -2,10 +2,9 @@ package donut.core.api.system.physic;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import donut.core.api.system.EntitySystemWrapable;
-import donut.core.api.system.EntitySystemWrapper;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
 import donut.core.wrapper.ECSystem.EntitySystem;
+import org.springframework.context.annotation.Bean;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,11 +14,6 @@ public class PhysicSystem extends EntitySystem
     private Set<ContactListener> contactListeners = new HashSet<>();
 
     final World world;
-
-    @Override
-    public void onUpdate(EntitiesContainer entitiesContainer) {
-        getWrapper().getWorld().step(deltaTime, 3, 3);
-    }
 
     public PhysicSystem()
     {
@@ -64,11 +58,15 @@ public class PhysicSystem extends EntitySystem
         return world;
     }
 
+    @Override
+    public void onUpdate(EntitiesContainer entitiesContainer, float deltaTime) {
+        world.step(deltaTime, 3, 3);
+    }
+
     public PhysicBody getPhysicBody(BodyDef def)
     {
         return new PhysicBody(world, def);
     }
-
 
     public final ContactListener[] getContactListeners()
     {

@@ -6,8 +6,9 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import donut.core.api.component.ComponentWrapable;
 import donut.core.api.component.ComponentWrapper;
+import donut.core.wrapper.ECSystem.Component;
 
-public class PhysicBody extends ComponentWrapper<PhysicBody>
+public class PhysicBody extends Component
 {
     @Override
     protected ComponentWrapable<PhysicBody> getWrappable() {
