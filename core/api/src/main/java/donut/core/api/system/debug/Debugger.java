@@ -9,8 +9,6 @@ import donut.core.api.system.render.IRenderCallback;
 import donut.core.wrapper.ECSystem.Component;
 
 public class Debugger extends Component implements IRenderCallback {
-    public static ComponentMapper<Debugger.Wrapable> mapper = ComponentMapper.getFor(Debugger.Wrapable.class);
-
     private boolean hasRenderer = false;
     private GameEntity gameEntity;
 

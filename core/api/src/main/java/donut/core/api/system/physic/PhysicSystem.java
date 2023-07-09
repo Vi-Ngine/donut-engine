@@ -65,8 +65,6 @@ public class PhysicSystem extends EntitySystem
         for(Entity entity : entitiesContainer.getEntitiesFor(PhysicBody.class))
         {
             PhysicBody physicBody = entity.getComponent(PhysicBody.class);
-
-            if(resourceProvider.con)
             resourceProvider.addConsumer(physicBody);
         }
 

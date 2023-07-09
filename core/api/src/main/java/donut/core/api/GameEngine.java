@@ -7,10 +7,11 @@ import donut.core.api.system.input.InputSystem;
 import donut.core.api.system.physic.PhysicSystem;
 import donut.core.api.system.render.RenderSystem;
 import donut.core.wrapper.ECSystem.Engine;
+import donut.core.wrapper.ECSystem.Entity;
+import donut.core.wrapper.ECSystem.EntitySystem;
 
 public class GameEngine extends Engine
 {
-
     public GameEngine()
     {
         addSystem(new InputSystem());
@@ -19,5 +20,11 @@ public class GameEngine extends Engine
         addSystem(new EntityDisposeSystem());
         addSystem(new RenderSystem());
         addSystem(new DebugSystem());
+    }
+
+    @Override
+    public void addEntity(Entity entity)
+    {
+        super.addEntity(entity);
     }
 }

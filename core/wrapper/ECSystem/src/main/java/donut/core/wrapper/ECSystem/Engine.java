@@ -1,9 +1,7 @@
 package donut.core.wrapper.ECSystem;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Engine {
     private EntitiesContainer entities = new EntitiesContainer();
@@ -21,6 +19,10 @@ public class Engine {
     public void addSystem(EntitySystem system)
     {
         systems.put(system.getClass().toString(), system);
+    }
+    public EntitySystem[] getSystems()
+    {
+        return systems.values().toArray(new EntitySystem[0]);
     }
 
     public <T extends  EntitySystem> T getSystem(Class<? extends EntitySystem> systemClass)

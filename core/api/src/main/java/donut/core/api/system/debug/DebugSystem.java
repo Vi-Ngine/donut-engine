@@ -10,14 +10,14 @@ import donut.core.wrapper.ECSystem.EntitySystem;
 public class DebugSystem extends EntitySystem
 {
     @Override
-    public void onUpdate(EntitiesContainer entitiesContainer) {
+    public void onUpdate(EntitiesContainer entitiesContainer, Object userData) {
         for(Entity entity : entitiesContainer.getEntitiesFor(Debugger.class))
         {
             Debugger debugger = entity.getComponent(Debugger.class);
 
             if(debugger.hasRenderer()) continue;
 
-            Renderer renderer = entity.requireComponent(RendererCreator.class);
+            Renderer renderer = entity.requireComponent(Renderer.class);
             renderer.addRenderCallback(debugger);
         }
     }
