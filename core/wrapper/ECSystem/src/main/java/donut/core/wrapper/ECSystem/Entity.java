@@ -19,9 +19,11 @@ public class Entity {
 
     public <T extends Component> T requireComponent(Class<T> componentClass)
     {
-        if(getComponent(componentClass) != null)
+        T component = getComponent(componentClass);
+
+        if(component != null)
         {
-            return getComponent(componentClass);
+            return component;
         }
 
         Constructor<T> ctor;
@@ -32,9 +34,12 @@ public class Entity {
         }
 
         try {
-            return ctor.newInstance();
+            component = ctor.newInstance();
         } catch (InstantiationException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+
+        add(component);
+        return component;
     }
 }
