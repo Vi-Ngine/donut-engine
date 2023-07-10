@@ -33,4 +33,9 @@ public class EntitiesContainer
         entities.remove(entity);
         return this;
     }
+
+    public Entity[] toArray()
+    {
+        return entities.toArray(Entity[]::new);
+    }
 }

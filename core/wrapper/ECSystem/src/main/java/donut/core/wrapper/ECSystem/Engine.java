@@ -19,6 +19,11 @@ public class Engine<T> implements IResourceProvider {
         entities.add(entity);
     }
 
+    public Entity[] getEntities()
+    {
+        return entities.toArray();
+    }
+
     public void removeEntity(Entity entity)
     {
         entities.remove(entity);

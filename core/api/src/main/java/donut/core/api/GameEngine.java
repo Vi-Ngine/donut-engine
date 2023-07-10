@@ -19,6 +19,8 @@ public class GameEngine extends Engine<Float>
         addSystem(new EntityDisposeSystem());
         addSystem(new RenderSystem());
         addSystem(new DebugSystem());
+
+        getProvider().addResource(this, GameSystem.class);
     }
 
     @Override

@@ -18,6 +18,11 @@ public class ResourceConsumer {
         this.requestPostListener = requestPostListener;
     }
 
+    public void postRequest(Class<?> resourceClass, Class<?> consumerScope, IConsumeCallback iConsumeCallback)
+    {
+        postRequest(new ResourceRequest(resourceClass, consumerScope, iConsumeCallback));
+    }
+
     public void postRequest(ResourceRequest postingRequest)
     {
         if(postingRequest.getState() == ResourceRequest.RequestState.RESOLVED) return;

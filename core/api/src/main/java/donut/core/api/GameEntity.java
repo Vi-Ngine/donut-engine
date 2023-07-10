@@ -3,7 +3,7 @@ package donut.core.api;
 import donut.core.api.system.dispose.Disposer;
 import donut.core.wrapper.ECSystem.Entity;
 
-public abstract class GameEntity extends Entity
+public class GameEntity extends Entity
 {
     public final Transform transform;
 
@@ -12,7 +12,7 @@ public abstract class GameEntity extends Entity
         transform = new Transform();
     }
 
-    public void Dispose()
+    public void dispose()
     {
         add(new Disposer());
     }
