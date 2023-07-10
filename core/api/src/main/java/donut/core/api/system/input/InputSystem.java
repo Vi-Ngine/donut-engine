@@ -1,3 +1,4 @@
+/*
 package donut.core.api.system.input;
 
 import com.badlogic.gdx.Gdx;
@@ -48,3 +49,4 @@ public class InputSystem extends GameSystem {
         return inputProcessors.toArray(new InputProcessor[0]);
     }
 }
+*/
