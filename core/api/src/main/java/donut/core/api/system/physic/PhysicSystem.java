@@ -15,7 +15,7 @@ public class PhysicSystem extends GameSystem
 {
     private Set<ContactListener> contactListeners = new HashSet<>();
     private ResourceProvider resourceProvider = new ResourceProvider();
-    final World world;
+    public final World world;
 
     public PhysicSystem()
     {

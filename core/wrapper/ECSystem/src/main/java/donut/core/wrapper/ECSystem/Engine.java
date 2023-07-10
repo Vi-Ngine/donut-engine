@@ -1,11 +1,19 @@
 package donut.core.wrapper.ECSystem;
 
+import donut.core.wrapper.RESquest.IResourceProvider;
+import donut.core.wrapper.RESquest.ResourceProvider;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class Engine<T> {
+public class Engine<T> implements IResourceProvider {
     private EntitiesContainer entities = new EntitiesContainer();
     private Map<String, EntitySystem> systems = new HashMap<>();
+    private ResourceProvider resourceProvider = new ResourceProvider();
+    @Override
+    public ResourceProvider getProvider() {
+        return resourceProvider;
+    }
     public void addEntity(Entity entity)
     {
         entities.add(entity);
@@ -19,6 +27,7 @@ public class Engine<T> {
     public void addSystem(EntitySystem system)
     {
         systems.put(system.getClass().toString(), system);
+        resourceProvider.addConsumer(system);
     }
     public EntitySystem[] getSystems()
     {

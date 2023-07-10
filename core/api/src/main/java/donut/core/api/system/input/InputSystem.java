@@ -3,15 +3,10 @@ package donut.core.api.system.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import donut.core.api.GameSystem;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import donut.core.api.GameSystem;
-import donut.core.api.system.EntitySystemWrapable;
-import donut.core.api.system.EntitySystemWrapper;
-import donut.core.wrapper.ECSystem.EntitiesContainer;
-import donut.core.wrapper.ECSystem.EntitySystem;
 
 public class InputSystem extends GameSystem {
 

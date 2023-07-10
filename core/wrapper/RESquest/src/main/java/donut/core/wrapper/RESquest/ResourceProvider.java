@@ -68,7 +68,7 @@ public class ResourceProvider {
         processRequests();
     }
 
-    private void processRequests()
+    public void processRequests()
     {
         for(ResourceConsumer consumer : consumers)
         {
