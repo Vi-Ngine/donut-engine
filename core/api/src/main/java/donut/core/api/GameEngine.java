@@ -8,9 +8,8 @@ import donut.core.api.system.physic.PhysicSystem;
 import donut.core.api.system.render.RenderSystem;
 import donut.core.wrapper.ECSystem.Engine;
 import donut.core.wrapper.ECSystem.Entity;
-import donut.core.wrapper.ECSystem.EntitySystem;
 
-public class GameEngine extends Engine
+public class GameEngine extends Engine<Float>
 {
     public GameEngine()
     {
@@ -26,5 +25,9 @@ public class GameEngine extends Engine
     public void addEntity(Entity entity)
     {
         super.addEntity(entity);
+    }
+
+    @Override
+    public void update(Float deltaTime) {
     }
 }

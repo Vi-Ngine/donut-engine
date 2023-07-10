@@ -10,13 +10,6 @@ import donut.core.wrapper.ECSystem.Component;
 
 public class Debugger extends Component implements IRenderCallback {
     private boolean hasRenderer = false;
-    private GameEntity gameEntity;
-
-    @Override
-    public void onComponentAdded(GameEntity gameEntity) {
-        this.gameEntity = gameEntity;
-    }
-
     public boolean hasRenderer()
     {
         return hasRenderer;
@@ -31,17 +24,6 @@ public class Debugger extends Component implements IRenderCallback {
         batch.begin();
         font.draw(batch, debugText, gameEntity.transform.px, gameEntity.transform.py);
         batch.end();
-    }
-
-    public static class Wrapable extends ComponentWrapable<Debugger>
-    {
-
-    }
-
-    @Override
-    protected ComponentWrapable<Debugger> getWrappable()
-    {
-        return new Wrapable();
     }
 
     public String debugText = "Debug me!";

@@ -3,7 +3,7 @@ package donut.core.wrapper.ECSystem;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Engine {
+public class Engine<T> {
     private EntitiesContainer entities = new EntitiesContainer();
     private Map<String, EntitySystem> systems = new HashMap<>();
     public void addEntity(Entity entity)
@@ -30,7 +30,7 @@ public class Engine {
         return (T)systems.get(systemClass.toString());
     }
 
-    public void update(Object userData)
+    public void update(T userData)
     {
         for(EntitySystem system : systems.values())
         {

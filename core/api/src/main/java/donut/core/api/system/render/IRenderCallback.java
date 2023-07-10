@@ -5,5 +5,5 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public interface IRenderCallback
 {
-    public void render(float deltatime, SpriteBatch batch, ShapeRenderer shapeRenderer);
+    public void render(float deltaTime, SpriteBatch batch, ShapeRenderer shapeRenderer);
 }

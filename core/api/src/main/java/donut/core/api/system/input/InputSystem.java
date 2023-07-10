@@ -7,12 +7,13 @@ import com.badlogic.gdx.InputProcessor;
 import java.util.HashSet;
 import java.util.Set;
 
+import donut.core.api.GameSystem;
 import donut.core.api.system.EntitySystemWrapable;
 import donut.core.api.system.EntitySystemWrapper;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
 import donut.core.wrapper.ECSystem.EntitySystem;
 
-public class InputSystem extends EntitySystem {
+public class InputSystem extends GameSystem {
 
     Set<InputProcessor> inputProcessors = new HashSet<>();
 

@@ -2,21 +2,19 @@ package donut.core.api.system.physic;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import donut.core.wrapper.ECSystem.Component;
+import donut.core.api.GameSystem;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
 import donut.core.wrapper.ECSystem.Entity;
 import donut.core.wrapper.ECSystem.EntitySystem;
-import donut.core.wrapper.
 import donut.core.wrapper.RESquest.ResourceProvider;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class PhysicSystem extends EntitySystem
+public class PhysicSystem extends GameSystem
 {
     private Set<ContactListener> contactListeners = new HashSet<>();
     private ResourceProvider resourceProvider = new ResourceProvider();
-
     final World world;
 
     public PhysicSystem()
@@ -60,7 +58,7 @@ public class PhysicSystem extends EntitySystem
     }
 
     @Override
-    public void onUpdate(EntitiesContainer entitiesContainer, Object deltaTime)
+    public void onUpdate(EntitiesContainer entitiesContainer, Float deltaTime)
     {
         for(Entity entity : entitiesContainer.getEntitiesFor(PhysicBody.class))
         {

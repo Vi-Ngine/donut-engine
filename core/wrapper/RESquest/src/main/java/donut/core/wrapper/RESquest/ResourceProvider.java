@@ -5,14 +5,53 @@ import java.util.*;
 public class ResourceProvider {
     Map<String, Object> resources = new HashMap<>();
     Set<ResourceConsumer> consumers = new HashSet<>();
-    public void addResource(Object resource)
+    public void addResource(Object resource, Class<?> scope)
     {
-        resources.put(resource.getClass().toString(), resource);
+        resources.put(getResourceKey(resource.getClass(), scope), resource);
     }
 
-    public <T> T getResource(Class<T> resourceClass)
+    public void addResource(Object resource)
     {
-        return (T)resources.get(resourceClass.toString());
+        addResource(resource, Object.class);
+    }
+
+    public <T> T getResource(Class<T> resourceClass, Class<?> scope)
+    {
+        do {
+            T resource = (T)resources.get(getResourceKey(resourceClass, scope));
+            if(resource != null) return resource;
+            scope = scope.getSuperclass();
+        } while(scope != null);
+
+        return null;
+    }
+
+    private String getResourceKey(Class<?> resourceClass, Class<?> receiverScope)
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append(resourceClass.getName());
+
+        for(String clazz : getFullClasses(receiverScope))
+        {
+            builder.append(":");
+            builder.append(clazz);
+        }
+
+        return builder.toString();
+    }
+
+    private String[] getFullClasses(Class<?> receiverScope)
+    {
+        List<String> absoluteScopePath = new ArrayList<>();
+
+        do {
+            absoluteScopePath.add(receiverScope.getName());
+            receiverScope = receiverScope.getSuperclass();
+        } while(receiverScope != null);
+
+        Collections.reverse(absoluteScopePath);
+
+        return absoluteScopePath.toArray(String[]::new);
     }
 
     public void addConsumer(IResourceConsumer consumer)
@@ -26,7 +65,7 @@ public class ResourceProvider {
         {
             for(ResourceRequest request : consumer.getUnresolvedRequests())
             {
-                if(request.consume(getResource(request.resourceClass)))
+                if(request.consume(getResource(request.resourceClass, request.getScope())))
                 {
                     request.setState(ResourceRequest.RequestState.RESOLVED);
                 }

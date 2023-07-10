@@ -26,7 +26,7 @@ public class RenderSystem extends EntitySystem {
     }
 
     @Override
-    public void onUpdate(EntitiesContainer entitiesContainer) {
+    public void onUpdate(EntitiesContainer entitiesContainer, Float deltaTime) {
         for(GameEntity entity :
                 RenderSystem.this.getEngine().getEntitiesFor(Family.all(Renderer.Wrapable.class).get()))
         {

@@ -7,6 +7,7 @@ public class ResourceRequest<T> {
         RESOLVED
     }
     public final Class<T> resourceClass;
+    private Class<?> receiverScope = Object.class;
     private final IConsumeCallback<T> consumeCallback;
     private RequestState state;
     private RunnableOne<ResourceRequest> requestResolvedListener;
@@ -41,5 +42,10 @@ public class ResourceRequest<T> {
     protected void setRequestResolvedListener(RunnableOne<ResourceRequest> runnable)
     {
         this.requestResolvedListener = runnable;
+    }
+
+    public Class<?> getScope()
+    {
+        return receiverScope;
     }
 }
