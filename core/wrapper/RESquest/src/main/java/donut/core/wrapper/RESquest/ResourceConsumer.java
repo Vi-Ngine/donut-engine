@@ -13,7 +13,7 @@ public class ResourceConsumer {
 
     private IOnRequestPostListener requestPostListener;
 
-    protected void setRequestPostListener(IOnRequestPostListener requestPostListener)
+    protected void setRequestPostListenerInternal(IOnRequestPostListener requestPostListener)
     {
         this.requestPostListener = requestPostListener;
     }

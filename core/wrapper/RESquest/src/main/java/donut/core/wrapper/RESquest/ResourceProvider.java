@@ -8,6 +8,7 @@ public class ResourceProvider {
     public void addResource(Object resource, Class<?> scope)
     {
         resources.put(getResourceKey(resource.getClass(), scope), resource);
+        processRequests();
     }
 
     public void addResource(Object resource)
@@ -57,23 +58,35 @@ public class ResourceProvider {
     public void addConsumer(IResourceConsumer consumer)
     {
         consumers.add(consumer.getConsumer());
+        consumer.getConsumer().setRequestPostListenerInternal(new IOnRequestPostListener() {
+            @Override
+            public void onRequestPost(ResourceRequest request) {
+                processRequest(request);
+            }
+        });
+
         processRequests();
     }
 
-    public void processRequests()
+    private void processRequests()
     {
         for(ResourceConsumer consumer : consumers)
         {
             for(ResourceRequest request : consumer.getUnresolvedRequests())
             {
-                Object resource = getResource(request.resourceClass, request.getScope());
-                if(resource == null) continue;
-
-                if(request.consume(resource))
-                {
-                    request.setState(ResourceRequest.RequestState.RESOLVED);
-                }
+                processRequest(request);
             }
+        }
+    }
+
+    private void processRequest(ResourceRequest request)
+    {
+        Object resource = getResource(request.resourceClass, request.getScope());
+        if(resource == null) return;
+
+        if(request.consume(resource))
+        {
+            request.setState(ResourceRequest.RequestState.RESOLVED);
         }
     }
 }

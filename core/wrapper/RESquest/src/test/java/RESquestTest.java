@@ -17,9 +17,6 @@ public class RESquestTest
         TextConsumer consumer = new TextConsumer();
         provider.addConsumer(consumer);
 
-        provider.processRequests();
-        provider.processRequests();
-
         Assertions.assertEquals(0, consumer.getConsumer().getUnresolvedRequests().length);
         Assertions.assertEquals("hellobitch", consumer.consumeString);
     }
@@ -32,9 +29,6 @@ public class RESquestTest
 
         TextConsumer2 consumer = new TextConsumer2();
         provider.addConsumer(consumer);
-
-        provider.processRequests();
-        provider.processRequests();
 
         Assertions.assertTrue(consumer.getConsumer().getUnresolvedRequests().length > 0);
         Assertions.assertEquals("hellobitch", consumer.consumeString);
@@ -52,9 +46,6 @@ public class RESquestTest
         provider.addConsumer(consumer);
         provider.addConsumer(consumer2);
 
-        provider.processRequests();
-        provider.processRequests();
-
         Assertions.assertEquals("hellobitch", consumer.consumeString);
         Assertions.assertEquals("default", consumer2.consumeString);
     }
@@ -70,9 +61,6 @@ public class RESquestTest
 
         stringProvider.addConsumer(consumer);
         intProvider.addConsumer(consumer);
-
-        stringProvider.processRequests();
-        intProvider.processRequests();
 
         Assertions.assertEquals("default", consumer.stringResource);
         Assertions.assertEquals(123, consumer.intResource);
@@ -138,7 +126,7 @@ public class RESquestTest
         boolean[] shouldBeTrue = {false};
 
         Method setRequestPostListener =
-                ResourceConsumer.class.getDeclaredMethod("setRequestPostListener", IOnRequestPostListener.class);
+                ResourceConsumer.class.getDeclaredMethod("setRequestPostListenerInternal", IOnRequestPostListener.class);
 
 
         setRequestPostListener.setAccessible(true);
