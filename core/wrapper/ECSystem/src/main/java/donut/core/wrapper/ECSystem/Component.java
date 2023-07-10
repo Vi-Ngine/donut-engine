@@ -13,7 +13,7 @@ public class Component implements IResourceConsumer {
         return consumer;
     }
 
-    public <R, T extends Component> void requestResouce(Class<R> resourceClass, Class<T> scopeClass, IConsumeCallback<R> iConsumeCallback)
+    public <R, T extends Component> void requestResource(Class<R> resourceClass, Class<T> scopeClass, IConsumeCallback<R> iConsumeCallback)
     {
         consumer.postRequest(new ResourceRequest(resourceClass, scopeClass, iConsumeCallback));
     }

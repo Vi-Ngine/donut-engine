@@ -1,7 +1,4 @@
-import donut.core.wrapper.RESquest.IConsumeCallback;
-import donut.core.wrapper.RESquest.IResourceConsumer;
-import donut.core.wrapper.RESquest.ResourceProvider;
-import donut.core.wrapper.RESquest.ResourceRequest;
+import donut.core.wrapper.RESquest.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +17,6 @@ public class RESquestTest
         TextConsumer consumer = new TextConsumer();
         provider.addConsumer(consumer);
 
-        Assertions.assertTrue(consumer.consumeString.isEmpty());
-
         provider.processRequests();
         provider.processRequests();
 
@@ -37,8 +32,6 @@ public class RESquestTest
 
         TextConsumer2 consumer = new TextConsumer2();
         provider.addConsumer(consumer);
-
-        Assertions.assertTrue(consumer.consumeString.isEmpty());
 
         provider.processRequests();
         provider.processRequests();
@@ -136,5 +129,34 @@ public class RESquestTest
         }
 
         Assertions.assertEquals("java.lang.String:java.lang.Object:RESquestTest", result);
+    }
+
+    @Test
+    public void requestPostListenerTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        TextConsumer consumer = new TextConsumer();
+
+        boolean[] shouldBeTrue = {false};
+
+        Method setRequestPostListener =
+                ResourceConsumer.class.getDeclaredMethod("setRequestPostListener", IOnRequestPostListener.class);
+
+
+        setRequestPostListener.setAccessible(true);
+        setRequestPostListener.invoke(consumer.getConsumer(), new IOnRequestPostListener() {
+            @Override
+            public void onRequestPost(ResourceRequest request) {
+                shouldBeTrue[0] = true;
+                System.out.println("hello world");
+            }
+        });
+
+        consumer.getConsumer().postRequest(new ResourceRequest(String.class, new IConsumeCallback() {
+            @Override
+            public boolean consume(Object resource) {
+                return false;
+            }
+        }));
+
+        Assertions.assertTrue(shouldBeTrue[0]);
     }
 }

@@ -57,6 +57,7 @@ public class ResourceProvider {
     public void addConsumer(IResourceConsumer consumer)
     {
         consumers.add(consumer.getConsumer());
+        processRequests();
     }
 
     public void processRequests()

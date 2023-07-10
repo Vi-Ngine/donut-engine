@@ -11,9 +11,17 @@ public class ResourceConsumer {
         return unresolvedRequests.toArray(ResourceRequest[]::new);
     }
 
+    private IOnRequestPostListener requestPostListener;
+
+    protected void setRequestPostListener(IOnRequestPostListener requestPostListener)
+    {
+        this.requestPostListener = requestPostListener;
+    }
+
     public void postRequest(ResourceRequest postingRequest)
     {
         if(postingRequest.getState() == ResourceRequest.RequestState.RESOLVED) return;
+
         unresolvedRequests.add(postingRequest);
         postingRequest.setRequestResolvedListener(new RunnableOne<ResourceRequest>() {
             @Override
@@ -21,5 +29,8 @@ public class ResourceConsumer {
                 unresolvedRequests.remove(request);
             }
         });
+
+        if(requestPostListener != null)
+            requestPostListener.onRequestPost(postingRequest);
     }
 }

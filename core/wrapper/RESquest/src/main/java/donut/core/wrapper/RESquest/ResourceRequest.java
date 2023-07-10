@@ -42,7 +42,7 @@ public class ResourceRequest<T> {
         this.scopeClass = scopeClass;
         this.resourceClass = resourceClass;
         this.consumeCallback = consumeCallback;
-        state = RequestState.CREATE;
+        this.state = RequestState.CREATE;
     }
 
     protected void setRequestResolvedListener(RunnableOne<ResourceRequest> runnable)

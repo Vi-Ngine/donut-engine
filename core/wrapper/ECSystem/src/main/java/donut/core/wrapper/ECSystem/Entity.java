@@ -16,9 +16,9 @@ public class Entity {
         return this;
     }
 
-    public void addResource()
+    public void addResource(Object resource, Class<?> scope)
     {
-
+        provider.addResource(resource, scope);
     }
 
     public <T extends Component> T getComponent(Class<T> componentClass)
