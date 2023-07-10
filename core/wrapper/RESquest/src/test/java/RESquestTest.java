@@ -67,6 +67,25 @@ public class RESquestTest
     }
 
     @Test
+    public void test4()
+    {
+        TextProvider stringProvider = new TextProvider();
+        IntProvider intProvider = new IntProvider();
+
+
+        Consumer consumer = new Consumer();
+
+        stringProvider.addConsumer(consumer);
+        intProvider.addConsumer(consumer);
+
+        stringProvider.processRequests();
+        intProvider.processRequests();
+
+        Assertions.assertEquals("default", consumer.stringResource);
+        Assertions.assertEquals(123, consumer.intResource);
+    }
+
+    @Test
     public void getFullClassesTest()
     {
         ResourceProvider resourceProvider = new ResourceProvider();
