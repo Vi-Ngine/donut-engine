@@ -29,6 +29,7 @@ public class RESquestTest
         Assertions.assertEquals("hellobitch", consumer.consumeString);
     }
 
+    @Test
     public void test2()
     {
         TextProvider provider = new TextProvider();
@@ -44,6 +45,25 @@ public class RESquestTest
 
         Assertions.assertTrue(consumer.getConsumer().getUnresolvedRequests().length > 0);
         Assertions.assertEquals("hellobitch", consumer.consumeString);
+    }
+
+    @Test
+    public void test3()
+    {
+        TextProvider provider = new TextProvider();
+        provider.addResource("hellobitch", TextConsumer.class);
+
+        TextConsumer consumer = new TextConsumer();
+        TextConsumer2 consumer2 = new TextConsumer2();
+
+        provider.addConsumer(consumer);
+        provider.addConsumer(consumer2);
+
+        provider.processRequests();
+        provider.processRequests();
+
+        Assertions.assertEquals("hellobitch", consumer.consumeString);
+        Assertions.assertEquals("default", consumer2.consumeString);
     }
 
     @Test
@@ -96,6 +116,6 @@ public class RESquestTest
             throw new RuntimeException(e);
         }
 
-        System.out.println(result);
+        Assertions.assertEquals("java.lang.String:java.lang.Object:RESquestTest", result);
     }
 }

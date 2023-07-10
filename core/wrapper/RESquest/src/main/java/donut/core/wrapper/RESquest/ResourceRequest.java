@@ -7,7 +7,7 @@ public class ResourceRequest<T> {
         RESOLVED
     }
     public final Class<T> resourceClass;
-    private Class<?> receiverScope = Object.class;
+    private Class<?> scopeClass;
     private final IConsumeCallback<T> consumeCallback;
     private RequestState state;
     private RunnableOne<ResourceRequest> requestResolvedListener;
@@ -34,6 +34,12 @@ public class ResourceRequest<T> {
 
     public ResourceRequest(Class<T> resourceClass, IConsumeCallback<T> consumeCallback)
     {
+        this(resourceClass, Object.class, consumeCallback);
+    }
+
+    public ResourceRequest(Class<T> resourceClass, Class<?> scopeClass, IConsumeCallback<T> consumeCallback)
+    {
+        this.scopeClass = scopeClass;
         this.resourceClass = resourceClass;
         this.consumeCallback = consumeCallback;
         state = RequestState.CREATE;
@@ -46,6 +52,6 @@ public class ResourceRequest<T> {
 
     public Class<?> getScope()
     {
-        return receiverScope;
+        return scopeClass;
     }
 }

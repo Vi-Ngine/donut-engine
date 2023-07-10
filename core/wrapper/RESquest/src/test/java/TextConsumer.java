@@ -14,7 +14,7 @@ public class TextConsumer implements IResourceConsumer {
 
     public TextConsumer()
     {
-        consumer.postRequest(new ResourceRequest(String.class, new IConsumeCallback<String>() {
+        consumer.postRequest(new ResourceRequest(String.class, TextConsumer.class, new IConsumeCallback<String>() {
             @Override
             public boolean consume(String resource) {
                 consumeString = resource;

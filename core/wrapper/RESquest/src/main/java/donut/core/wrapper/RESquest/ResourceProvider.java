@@ -65,7 +65,10 @@ public class ResourceProvider {
         {
             for(ResourceRequest request : consumer.getUnresolvedRequests())
             {
-                if(request.consume(getResource(request.resourceClass, request.getScope())))
+                Object resource = getResource(request.resourceClass, request.getScope());
+                if(resource == null) continue;
+
+                if(request.consume(resource))
                 {
                     request.setState(ResourceRequest.RequestState.RESOLVED);
                 }
