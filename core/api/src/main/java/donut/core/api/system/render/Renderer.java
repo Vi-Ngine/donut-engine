@@ -1,7 +1,6 @@
 package donut.core.api.system.render;
 
-import donut.core.api.GameComponent;
-import donut.core.wrapper.ECSystem.Component;
+import wrapper.ecsystem.GameComponent;
 
 import java.util.HashSet;
 import java.util.Set;

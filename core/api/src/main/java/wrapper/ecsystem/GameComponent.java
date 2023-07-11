@@ -1,4 +1,4 @@
-package donut.core.api;
+package wrapper.ecsystem;
 
 import donut.core.wrapper.ECSystem.Component;
 

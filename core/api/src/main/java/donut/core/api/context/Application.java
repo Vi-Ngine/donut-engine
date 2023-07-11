@@ -1,6 +1,6 @@
 package donut.core.api.context;
 
-import donut.core.api.GameEngine;
+import wrapper.ecsystem.GameEngine;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

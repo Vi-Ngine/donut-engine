@@ -2,10 +2,9 @@ package donut.core.api.system.physic;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import donut.core.api.GameSystem;
+import wrapper.ecsystem.GameSystem;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
 import donut.core.wrapper.ECSystem.Entity;
-import donut.core.wrapper.ECSystem.EntitySystem;
 import donut.core.wrapper.RESquest.ResourceProvider;
 
 import java.util.HashSet;

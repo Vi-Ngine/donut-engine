@@ -1,5 +1,5 @@
-import donut.core.api.GameEngine;
-import donut.core.api.GameEntity;
+import wrapper.ecsystem.GameEngine;
+import wrapper.ecsystem.GameEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

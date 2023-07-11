@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import donut.core.api.GameSystem;
+import wrapper.ecsystem.GameSystem;
 import donut.core.api.system.physic.PhysicSystem;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
 import donut.core.wrapper.ECSystem.Entity;

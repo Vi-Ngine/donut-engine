@@ -1,5 +1,6 @@
-package donut.core.api;
+package wrapper.ecsystem;
 
+import donut.core.api.Transform;
 import donut.core.api.system.dispose.Disposer;
 import donut.core.wrapper.ECSystem.Entity;
 

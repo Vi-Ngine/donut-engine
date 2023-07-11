@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.vingine</groupId>
     <artifactId>wrapper</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -26,10 +25,21 @@
                 <artifactId>ECSystem</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>com.vingine</groupId>
+                <artifactId>lwjgl</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vingine</groupId>
+                <artifactId>lwjgl3</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
+        <module>lwjgl3</module>
         <module>RESquest</module>
         <module>ECSystem</module>
     </modules>

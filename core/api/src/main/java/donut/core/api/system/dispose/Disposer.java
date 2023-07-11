@@ -1,7 +1,6 @@
 package donut.core.api.system.dispose;
 
-import donut.core.api.GameComponent;
-import donut.core.wrapper.ECSystem.Component;
+import wrapper.ecsystem.GameComponent;
 
 public class Disposer extends GameComponent
 {

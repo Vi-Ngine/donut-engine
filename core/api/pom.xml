@@ -48,6 +48,11 @@
             <artifactId>spring-context</artifactId>
             <version>6.0.10</version>
         </dependency>
+        <dependency>
+            <groupId>com.vingine</groupId>
+            <artifactId>lwjgl3</artifactId>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <properties>

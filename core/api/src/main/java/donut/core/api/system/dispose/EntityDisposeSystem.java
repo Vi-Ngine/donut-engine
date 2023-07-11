@@ -1,7 +1,7 @@
 package donut.core.api.system.dispose;
 
-import donut.core.api.GameEngine;
-import donut.core.api.GameSystem;
+import wrapper.ecsystem.GameEngine;
+import wrapper.ecsystem.GameSystem;
 import donut.core.wrapper.ECSystem.EntitiesContainer;
 import donut.core.wrapper.ECSystem.Entity;
 import donut.core.wrapper.RESquest.IConsumeCallback;

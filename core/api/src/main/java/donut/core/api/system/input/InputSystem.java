@@ -4,7 +4,7 @@ package donut.core.api.system.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
-import donut.core.api.GameSystem;
+import wrapper.ecsystem.GameSystem;
 
 import java.util.HashSet;
 import java.util.Set;
