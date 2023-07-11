@@ -1,7 +1,8 @@
 package donut.core.api.system.event;
+import donut.core.api.GameComponent;
 import donut.core.wrapper.ECSystem.Component;
 
-public class EntityCallbackReceiver extends Component {
+public class EntityCallbackReceiver extends GameComponent {
     private IUpdateCallback update;
     private ICreateCallback create;
 

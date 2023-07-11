@@ -3,13 +3,14 @@ package donut.core.api.system.physic;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
+import donut.core.api.GameComponent;
 import donut.core.wrapper.ECSystem.Component;
 import donut.core.wrapper.RESquest.IConsumeCallback;
 import donut.core.wrapper.RESquest.IResourceConsumer;
 import donut.core.wrapper.RESquest.ResourceConsumer;
 import donut.core.wrapper.RESquest.ResourceRequest;
 
-public class PhysicBody extends Component implements IResourceConsumer
+public class PhysicBody extends GameComponent implements IResourceConsumer
 {
     private World world;
     private BodyDef bodyDef;
